@@ -73,14 +73,17 @@ class Contents extends Component{
 	}
 
 	clearForm(e){
-		this.setState({
-			bodyweight: "",
-			snatch: "",
-			cleanAndJerk: "",
-			backSquat: "",
-			frontSquat: "",
-			weightclass: "",
-		});
+		var state = {};
+		for (const s in this.state){
+			if (s === "sex"){
+				state[s] = "men";
+				this.setCookie("sex", "men");
+			} else{
+				state[s] = "";
+				this.setCookie(s, "");
+			}
+		}
+		this.setState(state);
 	}
 
 	getLevelUpPercent(ref, lift){
