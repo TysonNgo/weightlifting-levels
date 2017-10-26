@@ -50,7 +50,7 @@ class Contents extends Component{
 		};
 		
 		var state = {
-			sex: getCookie("sex"),
+			sex: getCookie("sex") ? getCookie("sex") : "men",
 			bodyweight: getCookie("bodyweight"),
 			snatch: getCookie("snatch"),
 			cleanAndJerk: getCookie("cleanAndJerk"),
