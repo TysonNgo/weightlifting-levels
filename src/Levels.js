@@ -1,6 +1,6 @@
 function setResults(ref, label="", value="") {
 	function getWeightclass(){
-		var sex = ref.state.sex;
+		var sex = stats.sex;
 		var bw = stats.bodyweight;
 		var weightclasses = levels[0][sex];
 		var result = weightclasses[0].bodyweight;
@@ -14,7 +14,7 @@ function setResults(ref, label="", value="") {
 
 	function getResults(){
 		var result = {};
-		var sex = ref.state.sex;
+		var sex = stats.sex;
 		result["weightclass"] = getWeightclass();
 		var wci = wcIndexes[sex+result["weightclass"]];
 
@@ -36,13 +36,13 @@ function setResults(ref, label="", value="") {
 		}
 
 		result.snatchNext = result.snatchLevel < 7?
-			levels[result.snatchLevel][sex][wci]["snatch"]: "";
+			levels[result.snatchLevel][sex][wci]["snatch"]: "MAX LEVEL REACHED";
 		result.cleanAndJerkNext = result.cleanAndJerkLevel < 7?
-			levels[result.cleanAndJerkLevel][sex][wci]["cleanAndJerk"]: "";
+			levels[result.cleanAndJerkLevel][sex][wci]["cleanAndJerk"]: "MAX LEVEL REACHED";
 		result.backSquatNext = result.backSquatLevel < 7?
-			levels[result.backSquatLevel][sex][wci]["backSquat"]: "";
+			levels[result.backSquatLevel][sex][wci]["backSquat"]: "MAX LEVEL REACHED";
 		result.frontSquatNext = result.frontSquatLevel < 7?
-			levels[result.frontSquatLevel][sex][wci]["frontSquat"]: "";
+			levels[result.frontSquatLevel][sex][wci]["frontSquat"]: "MAX LEVEL REACHED";
 
 		return result;
 	}
@@ -846,6 +846,7 @@ function setResults(ref, label="", value="") {
 	];
 
 	var stats = {
+		sex: ref.state.sex,
 		bodyweight: Number(ref.state.bodyweight),
 		snatch: Number(ref.state.snatch),
 		cleanAndJerk: Number(ref.state.cleanAndJerk),

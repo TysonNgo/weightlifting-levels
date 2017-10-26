@@ -11,7 +11,6 @@ class Contents extends Component{
 		this.state = {
 			// config states
 			sex: "men",
-			units: "kg",
 			bodyweight: "",
 			snatch: "",
 			cleanAndJerk: "",
@@ -52,7 +51,6 @@ class Contents extends Component{
 		
 		var state = {
 			sex: getCookie("sex"),
-			units: getCookie("units"),
 			bodyweight: getCookie("bodyweight"),
 			snatch: getCookie("snatch"),
 			cleanAndJerk: getCookie("cleanAndJerk"),
@@ -95,13 +93,8 @@ class Contents extends Component{
 	setSex(s){
 		s = (s === "men" || s === "women") ? s : "men";
 		this.setState({sex: s});
+		setResults(this, "sex", s);
 		this.setCookie("sex", s);
-	}
-
-	setUnits(u){
-		u = (u === "kg" || u === "lb") ? u : "kg";
-		this.setState({units: u});
-		this.setCookie("units", u);
 	}
 
 	renderInput(ref, label){
@@ -146,7 +139,7 @@ class Contents extends Component{
 	render() {
 		return (
 			<div>
-				<h2>Results {this.state.bodyweight ? " - "+this.state.weightclass+" "+this.state.units: ""}</h2>
+				<h2>Results {this.state.bodyweight ? " - "+this.state.weightclass+" kg": ""}</h2>
 				<table className="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
@@ -193,13 +186,9 @@ class Contents extends Component{
 					<label htmlFor="sex">Sex</label>
 					<div>
 						<label className="radio-inline">
-							<input type="radio"name="sex" checked={this.state.sex === "men"} onClick={()=>this.setSex("men")} />Male</label>
-						<label className="radio-inline"><input type="radio" name="sex" checked={this.state.sex === "women"} onClick={()=>this.setSex("women")} />Female</label>
-					</div>
-					<label htmlFor="units">Units</label>
-					<div>
-						<label className="radio-inline"><input type="radio" name="units" checked={this.state.units === "kg"} onClick={()=>this.setUnits("kg")} />Kilograms</label>
-						<label className="radio-inline"><input type="radio" name="units" checked={this.state.units === "lb"} onClick={()=>this.setUnits("lb")} />Pounds</label>
+							<input type="radio"name="sex" checked={this.state.sex === "men"} onChange={()=>this.setSex("men")} />Male</label>
+						<label className="radio-inline">
+							<input type="radio" name="sex" checked={this.state.sex === "women"} onChange={()=>this.setSex("women")} />Female</label>
 					</div>
 					<br/>
 					{this.renderInput(this, "Bodyweight")}
