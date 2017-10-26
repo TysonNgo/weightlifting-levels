@@ -232,7 +232,8 @@ class App extends Component {
 					<div className="container-fluid">
 						<div className="col-md-1"></div>
 						<div className="col-md-10 text-center">
-							<h1>CATALYST ATHLETICS WEIGHTLIFTING LEVELS CALCULATOR</h1>
+							<h1>CATALYST ATHLETICS</h1>
+							<h4>WEIGHTLIFTING LEVELS CALCULATOR</h4>
 						</div>
 						<div className="col-md-1"></div>
 					</div>
