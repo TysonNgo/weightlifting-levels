@@ -1,4 +1,4 @@
-function setResults(ref, label, value) {
+function setResults(ref, label="", value="") {
 	function getWeightclass(){
 		var sex = ref.state.sex;
 		var bw = stats.bodyweight;
@@ -853,7 +853,9 @@ function setResults(ref, label, value) {
 		frontSquat: Number(ref.state.frontSquat)
 	}
 
-	stats[label] = value;
+	if (label){
+		stats[label] = value;
+	}
 
 	var result = getResults();
 

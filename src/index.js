@@ -40,10 +40,10 @@ class Contents extends Component{
 		    var ca = decodedCookie.split(';');
 		    for(var i = 0; i < ca.length; i++) {
 		        var c = ca[i];
-		        while (c.charAt(0) == ' ') {
+		        while (c.charAt(0) === ' ') {
 		            c = c.substring(1);
 		        }
-		        if (c.indexOf(name) == 0) {
+		        if (c.indexOf(name) === 0) {
 		            return c.substring(name.length, c.length);
 		        }
 		    }
@@ -60,6 +60,7 @@ class Contents extends Component{
 			frontSquat: getCookie("frontSquat")
 		};
 		this.setState(state);
+		setTimeout(()=>setResults(this),1000);
 	}
 
 	setCookie(cname, value){
@@ -145,7 +146,7 @@ class Contents extends Component{
 	render() {
 		return (
 			<div>
-				<h2>Results {this.state.bodyweight ? " - "+this.state.weightclass : ""}</h2>
+				<h2>Results {this.state.bodyweight ? " - "+this.state.weightclass+" "+this.state.units: ""}</h2>
 				<table className="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
@@ -192,13 +193,13 @@ class Contents extends Component{
 					<label htmlFor="sex">Sex</label>
 					<div>
 						<label className="radio-inline">
-							<input type="radio"name="sex" defaultChecked onClick={()=>this.setSex("men")} />Male</label>
-						<label className="radio-inline"><input type="radio" name="sex" onClick={()=>this.setSex("women")} />Female</label>
+							<input type="radio"name="sex" checked={this.state.sex === "men"} onClick={()=>this.setSex("men")} />Male</label>
+						<label className="radio-inline"><input type="radio" name="sex" checked={this.state.sex === "women"} onClick={()=>this.setSex("women")} />Female</label>
 					</div>
 					<label htmlFor="units">Units</label>
 					<div>
-						<label className="radio-inline"><input type="radio" name="units" defaultChecked onClick={()=>this.setUnits("kg")} />Kilograms</label>
-						<label className="radio-inline"><input type="radio" name="units" onClick={()=>this.setUnits("lb")} />Pounds</label>
+						<label className="radio-inline"><input type="radio" name="units" checked={this.state.units === "kg"} onClick={()=>this.setUnits("kg")} />Kilograms</label>
+						<label className="radio-inline"><input type="radio" name="units" checked={this.state.units === "lb"} onClick={()=>this.setUnits("lb")} />Pounds</label>
 					</div>
 					<br/>
 					{this.renderInput(this, "Bodyweight")}
