@@ -33,18 +33,47 @@ class Contents extends Component{
 		this.clearForm = this.clearForm.bind(this);
 	}
 
-	setCookie(){
+	componentDidMount(){
+		function getCookie(cname) {
+		    var name = cname + "=";
+		    var decodedCookie = decodeURIComponent(document.cookie);
+		    var ca = decodedCookie.split(';');
+		    for(var i = 0; i < ca.length; i++) {
+		        var c = ca[i];
+		        while (c.charAt(0) == ' ') {
+		            c = c.substring(1);
+		        }
+		        if (c.indexOf(name) == 0) {
+		            return c.substring(name.length, c.length);
+		        }
+		    }
+		    return "";
+		};
+		
+		var state = {
+			sex: getCookie("sex"),
+			units: getCookie("units"),
+			bodyweight: getCookie("bodyweight"),
+			snatch: getCookie("snatch"),
+			cleanAndJerk: getCookie("cleanAndJerk"),
+			backSquat: getCookie("backSquat"),
+			frontSquat: getCookie("frontSquat")
+		};
+		this.setState(state);
+	}
+
+	setCookie(cname, value){
 		var expires = function(d){
 			var year = d.getFullYear()+10;
 			var month = d.getMonth();
 			var day = d.getDay();
 			return new Date(year, month, day).toUTCString();
 		}(new Date());
-		alert(expires);
+		
+		document.cookie = `${cname}=${value}; ${expires};`;
 	}
 
 	clearForm(e){
-		this.setCookie();
 		this.setState({
 			bodyweight: "",
 			snatch: "",
@@ -65,11 +94,13 @@ class Contents extends Component{
 	setSex(s){
 		s = (s === "men" || s === "women") ? s : "men";
 		this.setState({sex: s});
+		this.setCookie("sex", s);
 	}
 
 	setUnits(u){
 		u = (u === "kg" || u === "lb") ? u : "kg";
 		this.setState({units: u});
+		this.setCookie("units", u);
 	}
 
 	renderInput(ref, label){
@@ -87,6 +118,7 @@ class Contents extends Component{
 			state[lift] = value;
 			ref.setState(state);
 			setResults(ref, lift, e.target.value);
+			ref.setCookie(lift, value);
 		}
 
 		function overwriteEnter(e){
