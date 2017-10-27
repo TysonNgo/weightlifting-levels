@@ -86,12 +86,19 @@ class Contents extends Component{
 		this.setState(state);
 	}
 
-	getLevelUpPercent(ref, lift){
+	getDifference(ref, lift){
+		var current = Number(ref.state[lift]);
+		var next = Number(ref.state[lift+"Next"]);
+		var diff = next-current;
+		return diff >= 0 ? diff+" kg" : "";
+	}
+
+	/*getLevelUpPercent(ref, lift){
 		var current = Number(ref.state[lift]);
 		var next = Number(ref.state[lift+"Next"]);
 		var percent = current/next;
 		return isFinite(percent) ? percent.toFixed(2) : "";
-	}
+	}*/
 
 	setSex(s){
 		s = (s === "men" || s === "women") ? s : "men";
@@ -150,7 +157,7 @@ class Contents extends Component{
 							<th>Level</th>
 							<th>Current</th>
 							<th>Next Level</th>
-							<th>% Level Up</th>
+							<th>Level Up In</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -159,28 +166,28 @@ class Contents extends Component{
 							<td>{this.state.snatchLevel}</td>
 							<td>{this.state.snatch}</td>
 							<td>{this.state.snatchNext}</td>
-							<td>{this.getLevelUpPercent(this, "snatch")}</td>
+							<td>{this.getDifference(this, "snatch")}</td>
 						</tr>
 						<tr>
 							<td>Clean &amp; Jerk</td>
 							<td>{this.state.cleanAndJerkLevel}</td>
 							<td>{this.state.cleanAndJerk}</td>
 							<td>{this.state.cleanAndJerkNext}</td>
-							<td>{this.getLevelUpPercent(this, "cleanAndJerk")}</td>
+							<td>{this.getDifference(this, "cleanAndJerk")}</td>
 						</tr>
 						<tr>
 							<td>Back Squat</td>
 							<td>{this.state.backSquatLevel}</td>
 							<td>{this.state.backSquat}</td>
 							<td>{this.state.backSquatNext}</td>
-							<td>{this.getLevelUpPercent(this, "backSquat")}</td>
+							<td>{this.getDifference(this, "backSquat")}</td>
 						</tr>
 						<tr>
 							<td>Front Squat</td>
 							<td>{this.state.frontSquatLevel}</td>
 							<td>{this.state.frontSquat}</td>
 							<td>{this.state.frontSquatNext}</td>
-							<td>{this.getLevelUpPercent(this, "frontSquat")}</td>
+							<td>{this.getDifference(this, "frontSquat")}</td>
 						</tr>
 					</tbody>
 				</table>
