@@ -93,6 +93,13 @@ class Contents extends Component{
 		return diff >= 0 ? diff+" kg" : "";
 	}
 
+	getRatio(ref, lift1, lift2){
+		var lift1 = Number(ref.state[lift1]);
+		var lift2 = Number(ref.state[lift2]);
+		var ratio = lift1/lift2;
+		return isFinite(ratio) ? (lift1/lift2*100.0).toFixed(1)+"%" : "";
+	}
+
 	/*getLevelUpPercent(ref, lift){
 		var current = Number(ref.state[lift]);
 		var next = Number(ref.state[lift+"Next"]);
@@ -188,6 +195,28 @@ class Contents extends Component{
 							<td>{this.state.frontSquat}</td>
 							<td>{this.state.frontSquatNext}</td>
 							<td>{this.getDifference(this, "frontSquat")}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table className="table table-bordered table-striped table-condensed">
+					<thead>
+						<tr>
+							<th className="col-xs-6">Ratio</th>
+							<th className="col-xs-6"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td clasName="col-xs-6"><strong>Snatch</strong> to <strong>Clean &amp; Jerk</strong></td>
+							<td clasName="col-xs-6">{this.getRatio(this, "snatch", "cleanAndJerk")}</td>
+						</tr>
+						<tr>
+							<td clasName="col-xs-6"><strong>Front Squat</strong> to <strong>Back Squat</strong></td>
+							<td clasName="col-xs-6">{this.getRatio(this, "frontSquat", "backSquat")}</td>
+						</tr>
+						<tr>
+							<td clasName="col-md-6"><strong>Clean &amp; Jerk</strong> to <strong>Front Squat</strong></td>
+							<td clasName="col-md-6">{this.getRatio(this, "cleanAndJerk", "frontSquat")}</td>
 						</tr>
 					</tbody>
 				</table>
