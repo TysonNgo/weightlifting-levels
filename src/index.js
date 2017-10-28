@@ -26,8 +26,10 @@ class Contents extends Component{
 			snatchNext: "",
 			cleanAndJerkNext: "",
 			backSquatNext: "",
-			frontSquatNext: ""
-
+			frontSquatNext: "",
+			optimalSNCJ: "",
+			optimalFSBS: "",
+			optimalCJFS: ""
 		}
 		this.clearForm = this.clearForm.bind(this);
 	}
@@ -201,22 +203,26 @@ class Contents extends Component{
 				<table className="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
-							<th className="col-xs-6">Ratio</th>
-							<th className="col-xs-6"></th>
+							<th className="col-xs-3">Ratio</th>
+							<th className="col-xs-3"></th>
+							<th className="col-xs-3">Optimal</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td clasName="col-xs-6"><strong>Snatch</strong> to <strong>Clean &amp; Jerk</strong></td>
-							<td clasName="col-xs-6">{this.getRatio(this, "snatch", "cleanAndJerk")}</td>
+							<td className="col-xs-3"><strong>Snatch</strong> to <strong>Clean &amp; Jerk</strong></td>
+							<td className="col-xs-3">{this.getRatio(this, "snatch", "cleanAndJerk")}</td>
+							<td className="col-xs-3">{this.state.optimalSNCJ ? this.state.optimalSNCJ+"%" : ""}</td>
 						</tr>
 						<tr>
-							<td clasName="col-xs-6"><strong>Front Squat</strong> to <strong>Back Squat</strong></td>
-							<td clasName="col-xs-6">{this.getRatio(this, "frontSquat", "backSquat")}</td>
+							<td className="col-xs-3"><strong>Front Squat</strong> to <strong>Back Squat</strong></td>
+							<td className="col-xs-3">{this.getRatio(this, "frontSquat", "backSquat")}</td>
+							<td className="col-xs-3">{this.state.optimalFSBS ? this.state.optimalFSBS+"%" : ""}</td>
 						</tr>
 						<tr>
-							<td clasName="col-md-6"><strong>Clean &amp; Jerk</strong> to <strong>Front Squat</strong></td>
-							<td clasName="col-md-6">{this.getRatio(this, "cleanAndJerk", "frontSquat")}</td>
+							<td className="col-xs-3"><strong>Clean &amp; Jerk</strong> to <strong>Front Squat</strong></td>
+							<td className="col-xs-3">{this.getRatio(this, "cleanAndJerk", "frontSquat")}</td>
+							<td className="col-xs-3">{this.state.optimalCJFS ? this.state.optimalCJFS+"%" : ""}</td>
 						</tr>
 					</tbody>
 				</table>

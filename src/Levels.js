@@ -47,6 +47,36 @@ function setResults(ref, label="", value="") {
 		return result;
 	}
 
+	function setOptimalRatios(results){
+		var sex = stats.sex;
+		var wci = wcIndexes[sex+getWeightclass()];
+		var result = {
+			sumSNCJ: 0,
+			sumFSBS: 0,
+			sumCJFS: 0,
+			numRatios: 0
+		};
+
+		levels.forEach((level)=>{
+			level["men"].forEach((lifts) => {
+				result.sumSNCJ += lifts.snatch/lifts.cleanAndJerk;
+				result.sumFSBS += lifts.frontSquat/lifts.backSquat;
+				result.sumCJFS += lifts.cleanAndJerk/lifts.frontSquat;
+				result.numRatios++;
+			})
+			level["women"].forEach((lifts) => {
+				result.sumSNCJ += lifts.snatch/lifts.cleanAndJerk;
+				result.sumFSBS += lifts.frontSquat/lifts.backSquat;
+				result.sumCJFS += lifts.cleanAndJerk/lifts.frontSquat;
+				result.numRatios++;
+			})
+		})
+
+		results.optimalSNCJ = (result.sumSNCJ/result.numRatios*100).toFixed(1);
+		results.optimalFSBS = (result.sumFSBS/result.numRatios*100).toFixed(1);
+		results.optimalCJFS = (result.sumCJFS/result.numRatios*100).toFixed(1);
+	}
+
 	var wcIndexes = {
 		"men56": 0,
 		"men62": 1,
@@ -859,6 +889,8 @@ function setResults(ref, label="", value="") {
 	}
 
 	var result = getResults();
+
+	setOptimalRatios(result);
 
 	ref.setState(result);
 }
