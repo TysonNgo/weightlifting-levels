@@ -70,8 +70,7 @@ class Contents extends Component{
 			var day = d.getDay();
 			return new Date(year, month, day).toUTCString();
 		}(new Date());
-		
-		document.cookie = `${cname}=${value}; ${expires};`;
+		document.cookie = `${cname}=${value}; expires=${expires};`;
 	}
 
 	clearForm(e){
