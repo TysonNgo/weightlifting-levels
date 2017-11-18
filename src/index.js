@@ -60,7 +60,7 @@ class Contents extends Component{
 			frontSquat: getCookie("frontSquat")
 		};
 		this.setState(state);
-		setTimeout(()=>setResults(this),1000);
+		setTimeout(() => setResults(this),1000);
 	}
 
 	setCookie(cname, value){
@@ -212,6 +212,11 @@ class Contents extends Component{
 							<td className="col-xs-3"><strong>Snatch</strong> to <strong>Clean &amp; Jerk</strong></td>
 							<td className="col-xs-3">{this.getRatio(this, "snatch", "cleanAndJerk")}</td>
 							<td className="col-xs-3">{this.state.optimalSNCJ ? this.state.optimalSNCJ+"%" : ""}</td>
+						</tr>
+						<tr>
+							<td className="col-xs-3"><strong>Snatch</strong> to <strong>Back Squat</strong></td>
+							<td className="col-xs-3">{this.getRatio(this, "snatch", "backSquat")}</td>
+							<td className="col-xs-3">{this.state.optimalSNBS ? this.state.optimalSNBS+"%" : ""}</td>
 						</tr>
 						<tr>
 							<td className="col-xs-3"><strong>Front Squat</strong> to <strong>Back Squat</strong></td>

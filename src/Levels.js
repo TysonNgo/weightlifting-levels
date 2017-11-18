@@ -54,6 +54,7 @@ function setResults(ref, label="", value="") {
 			sumSNCJ: 0,
 			sumFSBS: 0,
 			sumCJFS: 0,
+			sumSNBS: 0,
 			numRatios: 0
 		};
 
@@ -62,12 +63,14 @@ function setResults(ref, label="", value="") {
 				result.sumSNCJ += lifts.snatch/lifts.cleanAndJerk;
 				result.sumFSBS += lifts.frontSquat/lifts.backSquat;
 				result.sumCJFS += lifts.cleanAndJerk/lifts.frontSquat;
+				result.sumSNBS += lifts.snatch/lifts.backSquat;
 				result.numRatios++;
 			})
 			level["women"].forEach((lifts) => {
 				result.sumSNCJ += lifts.snatch/lifts.cleanAndJerk;
 				result.sumFSBS += lifts.frontSquat/lifts.backSquat;
 				result.sumCJFS += lifts.cleanAndJerk/lifts.frontSquat;
+				result.sumSNBS += lifts.snatch/lifts.backSquat;
 				result.numRatios++;
 			})
 		})
@@ -75,6 +78,7 @@ function setResults(ref, label="", value="") {
 		results.optimalSNCJ = (result.sumSNCJ/result.numRatios*100).toFixed(1);
 		results.optimalFSBS = (result.sumFSBS/result.numRatios*100).toFixed(1);
 		results.optimalCJFS = (result.sumCJFS/result.numRatios*100).toFixed(1);
+		results.optimalSNBS = (result.sumSNBS/result.numRatios*100).toFixed(1);
 	}
 
 	var wcIndexes = {
