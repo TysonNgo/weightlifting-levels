@@ -91,7 +91,7 @@ class Contents extends Component{
 		var current = Number(ref.state[lift]);
 		var next = Number(ref.state[lift+"Next"]);
 		var diff = next-current;
-		return diff >= 0 ? diff+" kg" : "";
+		return diff >= 0 ? diff.toFixed()+" kg" : "";
 	}
 
 	getRatio(ref, lift1, lift2){
