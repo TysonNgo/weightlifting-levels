@@ -48,8 +48,6 @@ function setResults(ref, label="", value="") {
 	}
 
 	function setOptimalRatios(results){
-		var sex = stats.sex;
-		var wci = wcIndexes[sex+getWeightclass()];
 		var result = {
 			sumSNCJ: 0,
 			sumFSBS: 0,

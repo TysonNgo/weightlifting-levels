@@ -95,8 +95,8 @@ class Contents extends Component{
 	}
 
 	getRatio(ref, lift1, lift2){
-		var lift1 = Number(ref.state[lift1]);
-		var lift2 = Number(ref.state[lift2]);
+		lift1 = Number(ref.state[lift1]);
+		lift2 = Number(ref.state[lift2]);
 		var ratio = lift1/lift2;
 		return isFinite(ratio) ? (lift1/lift2*100.0).toFixed(1)+"%" : "";
 	}
@@ -157,7 +157,7 @@ class Contents extends Component{
 	render() {
 		return (
 			<div>
-				<h2>Results {this.state.bodyweight ? " - "+this.state.weightclass+" kg": ""}</h2>
+				<h2>{this.state.bodyweight ? "Weightclass - "+this.state.weightclass+" kg": ""}</h2>
 				<table className="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
